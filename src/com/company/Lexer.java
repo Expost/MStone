@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  */
 public class Lexer {
 
+    // 正则表达式，用来分词，详细解释参见书籍
     public static String regexPat
             = "\\s*((//.*)|([0-9]+)|(\"(\\\\\"|\\\\\\\\|\\\\n|[^\"])*\")"
             + "|[A-Z_a-z][A-Z_a-z0-9]*|==|<=|>=|&&|\\|\\||\\p{Punct})?";
@@ -36,6 +37,8 @@ public class Lexer {
             return Token.EOF;
         }
     }
+
+    // 填充队列满足指定大小
     private boolean fillQueue(int i){
         while(i >= queue.size()){
             if(hasMore)
@@ -93,6 +96,7 @@ public class Lexer {
         }
     }
 
+    // 该函数将字符串两边的 \" 去掉
     protected String toStringLiteral(String s){
         StringBuilder sb = new StringBuilder();
         int len = s.length() - 1;
